@@ -1,0 +1,30 @@
+{
+  "name": "shoppingapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "browser-sync": "^2.27.10",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.4",
+    "cookie-session": "^2.0.0",
+    "debug": "~2.6.9",
+    "ejs": "^3.1.8",
+    "express": "~4.16.1",
+    "express-session": "^1.17.3",
+    "http-errors": "~1.6.3",
+    "knex": "^2.3.0",
+    "morgan": "~1.9.1",
+    "npm-run-all": "^4.1.5",
+    "passport": "^0.5.3",
+    "passport-local": "^1.0.0",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "postgres": "^3.2.4",
+    "sequelize": "^6.23.1",
+    "sequelize-auto": "^0.8.8"
+  }
+}

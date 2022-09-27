@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% if(isAuth) {%> 
+      <% if(isAuth) {%>
+        <a href="/logout">Logout</a>
+      <% }else{ %>
+        <a href="/signin">Signin</a>
+      <% } %> 
+    <div class="cup">
+      <h1><%= title %></h1>
+      <p>ようこそ<%= NaMe %>さん </p>
+      <p>買う予定のあるものを以下に記入しましょう</p>
+      <form action="/" method="post">
+        <label for="item" class="foo">品目</label>
+        <input type="text" name="item" id="item">
+        <label for="quantity" class="foo">量</label>
+        <input type="number" min="0" max="30" step="1" name="quantity" id="quantity">
+        <input type="submit" value="追加">
+      </form>
+    </div>
+    <h2>いまいくら？</h2>
+    <p><%= cashe %>円です </p>
+    <form action="/count" method="POST">
+      <input type="submit" value="お会計し終わった">
+    </form>
+    <ul> 
+      <% for(item of items) {%> 
+      <div class="hoge">
+        <li><%= item.item_name %>を<%= item.item_quantity %>つ買う  </li>
+        <form action="/buy" method="post">
+          <input type="hidden" name="id" value="<%= item.id %>">
+          <input type="hidden" name="qua" value="<%= item.item_quantity %>">
+          <label for="daikin">何円で</label>
+          <input required type="number" min="0" name="daikin" id="daikin">
+          <input type="submit" value="買った">
+        </form>
+      </div>
+      <% } %> 
+    </ul>
+    <% }else{ %>
+      <% if(isAuth) {%>
+        <a href="/logout">Logout</a>
+      <% }else{ %>
+        <a href="/signin">Signin</a>
+      <% } %>   
+      <h1>Welcome to the ShoppingApp</h1>
+      <a href="/signup">Sign Up Now!</a>
+    <% } %> 
+  </body>
+</html>

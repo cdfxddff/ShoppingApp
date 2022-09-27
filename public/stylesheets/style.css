@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.cup{
+  background-color: rgb(228, 151, 49);
+}
+.hoge:nth-child(odd){
+  background-color: antiquewhite;
+}
