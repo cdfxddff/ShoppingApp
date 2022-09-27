@@ -8,7 +8,11 @@ const client = new Client({
   host:'ec2-3-229-165-146.compute-1.amazonaws.com',
   database:'d58qbuc2m0e2ig',
   password:'e5690f3718f1322fa53d68fcbd76c8bc4acb36dfc83d0d84d3aee5070376c143',
-  port:5432
+  port:5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  },
 })
 
 // const client = new Client({

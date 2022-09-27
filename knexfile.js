@@ -33,6 +33,10 @@ module.exports = {
       user: "cygrlquuaibygd",
       password: "e5690f3718f1322fa53d68fcbd76c8bc4acb36dfc83d0d84d3aee5070376c143",
     },
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    },
     pool: {
       min: 2,
       max: 10
