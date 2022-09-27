@@ -11,6 +11,14 @@ const client = new Client({
   port:5432
 })
 
+// const client = new Client({
+//   user:'postgres',
+//   host:'localhost',
+//   database:'shoppingapp',
+//   password:'password',
+//   port:5432
+// })
+
 client.connect();
 /* GET home page. */
 
