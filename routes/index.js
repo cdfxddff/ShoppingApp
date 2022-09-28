@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
-const {Client} = require('pg');
+const pg = require('pg');
 
 // const client = new Client({
 //   host:'ec2-3-229-165-146.compute-1.amazonaws.com',
@@ -19,14 +19,12 @@ const {Client} = require('pg');
 //   password:'password',
 //   port:5432
 // })
-const client=new Client({
+const setting={
   connection: {
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
   },
-})
-
-client.connect();
+}
 /* GET home page. */
 
 let cashe=[];
@@ -82,14 +80,26 @@ router.post('/buy',(req,res,next)=>{
   const item_id=Number(req.body.id);
   const item_qua=Number(req.body.qua);
   //定数たちも正しく代入されている
-  client.query({
-    text:'delete from items where id = $1',
-    values:[item_id]
-  },(err,res)=>{
+  // client.query({
+  //   text:'delete from items where id = $1',
+  //   values:[item_id]
+  // },(err,res)=>{
+  //   if(err){
+  //     console.log(err.stack)
+  //   }else{
+  //     console.log(res.rows[0]);
+  //   }
+  // })
+  const pool = new pg.Pool(setting);
+  pool.connect((err,client)=>{
     if(err){
-      console.log(err.stack)
+      console.log(err);
     }else{
-      console.log(res.rows[0]);
+      client.query({
+        text:'delete from items where id = $1',
+        values:[item_id]
+      })
+      .catch(e=> console.error(e.stack));
     }
   })
   cashe[req.user.id]+=yen*item_qua;
