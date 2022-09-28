@@ -16,13 +16,8 @@ module.exports = {
   staging: {
     client: "pg",
     connection: {
-      database: "ShoppingApp",
-      user: "root",
-      password: "[事前準備で設定したrootユーザのパスワード]",
-    },
-    pool: {
-      min: 2,
-      max: 10
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
     },
   },
 

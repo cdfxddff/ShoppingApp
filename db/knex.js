@@ -1,4 +1,4 @@
-const environment = "production";
+const environment = "staging";
 const config = require("../knexfile.js")[environment];
 const knex = require("knex")(config);
 
