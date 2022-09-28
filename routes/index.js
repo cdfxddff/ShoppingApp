@@ -3,22 +3,7 @@ const router = express.Router();
 const knex = require('../db/knex');
 const pg = require('pg');
 
-// const client = new Client({
-//   host:'ec2-3-229-165-146.compute-1.amazonaws.com',
-//   user:'cygrlquuaibygd',
-//   password:'e5690f3718f1322fa53d68fcbd76c8bc4acb36dfc83d0d84d3aee5070376c14',
-//   database:'d58qbuc2m0e2ig',
-//   port: 5432,
-//   ssl: { rejectUnauthorized: false },
-// })
 
-// const client = new Client({
-//   user:'postgres',
-//   host:'localhost',
-//   database:'shoppingapp',
-//   password:'password',
-//   port:5432
-// })
 const setting={
   connection: {
     connectionString: process.env.DATABASE_URL,
@@ -91,7 +76,7 @@ router.post('/buy',(req,res,next)=>{
   //   }
   // })
   const pool = new pg.Pool(setting);
-  pool.connect((err,client)=>{
+  pool.getConnection((err,client)=>{
     if(err){
       console.log(err);
     }else{
