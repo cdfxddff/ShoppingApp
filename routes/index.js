@@ -9,9 +9,9 @@ const client = new Client({
   password:'e5690f3718f1322fa53d68fcbd76c8bc4acb36dfc83d0d84d3aee5070376c14',
   database:'d58qbuc2m0e2ig',
   port: 5432,
-  ssl: {
-    rejectUnauthorized: false
-  },
+  // ssl: {
+  //   rejectUnauthorized: false
+  // },
 })
 
 // const client = new Client({
