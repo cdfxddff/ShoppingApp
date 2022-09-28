@@ -1,15 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
-const pg = require('pg');
+//const pg = require('pg');
+const {Client} = require('pg');
 
-
-const setting={
+const client = new Client({
   connection: {
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
   },
-}
+})
+// const setting={
+//   connection: {
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: { rejectUnauthorized: false },
+//   },
+// }
 /* GET home page. */
 
 let cashe=[];
@@ -64,17 +70,18 @@ router.post('/buy',(req,res,next)=>{
   const yen = Number(req.body.daikin);
   const item_id=Number(req.body.id);
   const item_qua=Number(req.body.qua);
+  client.connect();
   //定数たちも正しく代入されている
-  // client.query({
-  //   text:'delete from items where id = $1',
-  //   values:[item_id]
-  // },(err,res)=>{
-  //   if(err){
-  //     console.log(err.stack)
-  //   }else{
-  //     console.log(res.rows[0]);
-  //   }
-  // })
+  client.query({
+    text:'delete from items where id = $1',
+    values:[item_id]
+  },(err,res)=>{
+    if(err){
+      console.log(err.stack)
+    }else{
+      console.log(res.rows[0]);
+    }
+  })
 
 
   //const pool = new pg.Pool(setting);
@@ -92,9 +99,6 @@ router.post('/buy',(req,res,next)=>{
   // })
   //pool.end();
 
-  knex('items')
-    .where('id',item_id)
-    .del();
   cashe[req.user.id]+=yen*item_qua;
   res.redirect('/');
 })
