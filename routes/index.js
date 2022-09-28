@@ -8,12 +8,6 @@ const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 })
-// const setting={
-//   connection: {
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: { rejectUnauthorized: false },
-//   },
-// }
 /* GET home page. */
 
 let cashe=[];
@@ -80,22 +74,6 @@ router.post('/buy',(req,res,next)=>{
       console.log(res.rows[0]);
     }
   })
-
-
-  //const pool = new pg.Pool(setting);
-  // pool.connect((err,client)=>{
-  //   if(err){
-  //     console.log(err);
-  //   }else{
-  //     client.query({
-  //       text:'delete from items where id = $1',
-  //       values:[item_id]
-  //     })
-  //     .catch(e=> console.error(e.stack));
-  //   }
-  //   done();
-  // })
-  //pool.end();
 
   cashe[req.user.id]+=yen*item_qua;
   res.redirect('/');

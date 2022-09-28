@@ -17,10 +17,14 @@
       <p>ようこそ<%= NaMe %>さん </p>
       <p>買う予定のあるものを以下に記入しましょう</p>
       <form action="/" method="post">
-        <label for="item" class="foo">品目</label>
-        <input type="text" name="item" id="item">
-        <label for="quantity" class="foo">量</label>
-        <input type="number" min="0" max="30" step="1" name="quantity" id="quantity">
+        <div>
+          <label for="item" class="foo">品目</label>
+          <input type="text" name="item" id="item">
+        </div>
+        <div>
+          <label for="quantity" class="foo">量</label>
+          <input type="number" min="0" max="30" step="1" name="quantity" id="quantity">
+        </div>
         <input type="submit" value="追加">
       </form>
     </div>
