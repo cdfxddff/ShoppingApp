@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 //const pg = require('pg');
-const {Client} = require('pg');
+const {Pool} = require('pg');
 
-const client = new Client({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 })
@@ -13,6 +13,10 @@ const client = new Client({
 let cashe=[];
 let i=0;
 
+pool.on('error',(err,client)=>{
+  console.error('error',err)
+  process.exit(-1);
+});
 
 router.get('/', function(req, res, next) {
   const isAuth=req.isAuthenticated();
@@ -62,20 +66,17 @@ router.post('/buy',(req,res,next)=>{
   const yen = Number(req.body.daikin);
   const item_id=Number(req.body.id);
   const item_qua=Number(req.body.qua);
-  client.connect();
-  //定数たちも正しく代入されている
-  client.query({
-    text:'delete from items where id = $1',
-    values:[item_id]
-  },(err,res)=>{
-    if(err){
-      console.log(err.stack);
-      client.end();
-    }else{
-      console.log(res.rows[0]);
-      client.end();
-    }
-  })
+  pool.connect()
+    .then(client=>{
+      return client
+        .query('delete from items where id = $1',[item_id])
+        .then(res=>{
+          client.release();
+        })
+        .catch(err=>{
+          client.release();
+        })
+    })
   cashe[req.user.id]+=yen*item_qua;
   res.redirect('/');
 })
