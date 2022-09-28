@@ -76,7 +76,7 @@ router.post('/buy',(req,res,next)=>{
   //   }
   // })
   const pool = new pg.Pool(setting);
-  pool.getConnection((err,client)=>{
+  pool.connect((err,client)=>{
     if(err){
       console.log(err);
     }else{
@@ -86,7 +86,9 @@ router.post('/buy',(req,res,next)=>{
       })
       .catch(e=> console.error(e.stack));
     }
+    done();
   })
+  pool.end();
   cashe[req.user.id]+=yen*item_qua;
   res.redirect('/');
 })
