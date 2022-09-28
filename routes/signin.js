@@ -7,7 +7,6 @@ router.get('/', function (req, res, next) {
   res.render('signin', {
     title: 'Sign in',
     isAuth:isAuth,
-    errorMessage:'ここにエラーが表示されます'
   });
 });
 router.post('/', passport.authenticate('local',{
