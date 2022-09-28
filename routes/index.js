@@ -5,10 +5,8 @@ const knex = require('../db/knex');
 const {Client} = require('pg');
 
 const client = new Client({
-  connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false },
-  },
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
 })
 // const setting={
 //   connection: {
