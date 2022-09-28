@@ -69,12 +69,13 @@ router.post('/buy',(req,res,next)=>{
     values:[item_id]
   },(err,res)=>{
     if(err){
-      console.log(err.stack)
+      console.log(err.stack);
+      client.end();
     }else{
       console.log(res.rows[0]);
+      client.end();
     }
   })
-  client.end();
   cashe[req.user.id]+=yen*item_qua;
   res.redirect('/');
 })
