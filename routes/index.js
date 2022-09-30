@@ -4,6 +4,8 @@ const knex = require('../db/knex');
 //const pg = require('pg');
 const {Pool} = require('pg');
 
+//githubに上げてるのでブランチの名前はmainです
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
@@ -33,7 +35,7 @@ router.get('/', function(req, res, next) {
         res.render('index',{
           title:'Shopping App',
           items:results,
-          cashe:cashe[req.user.id],
+          cashe:Math.floor(cashe[req.user.id]),
           isAuth:isAuth,
           NaMe:userN,
           iD:userId
