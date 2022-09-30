@@ -77,7 +77,7 @@ router.post('/buy',(req,res,next)=>{
           client.release();
         })
     })
-  cashe[req.user.id]+=yen*item_qua;
+  cashe[req.user.id]+=yen*item_qua*1.1;
   res.redirect('/');
 })
 
