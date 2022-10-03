@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
       .where({user_id:userId})
       .then(results=>{
         res.render('index',{
-          title:'Shopping App',
+          title:'食料品の買い物リスト',
           items:results,
           cashe:Math.floor(cashe[req.user.id]),
           isAuth:isAuth,
@@ -44,13 +44,13 @@ router.get('/', function(req, res, next) {
       .catch(err=>{
         console.error(err);
         res.render('index',{
-          title:'Shopping App',
+          title:'食料品の買い物リスト',
           isAuth:isAuth
         });
       });
   }else{
     res.render('index',{
-      title:'Shopping App',
+      title:'食料品の買い物リスト',
       isAuth:isAuth
     });
   }
@@ -79,7 +79,7 @@ router.post('/buy',(req,res,next)=>{
           client.release();
         })
     })
-  cashe[req.user.id]+=yen*item_qua*1.1;
+  cashe[req.user.id]+=yen*item_qua*1.08;
   res.redirect('/');
 })
 
@@ -97,7 +97,7 @@ router.post('/',(req,res,next)=>{
     .catch(err=>{
       console.error(err);
       res.render('index',{
-        title:'Shopping App',
+        title:'食料品の買い物リスト',
         isAuth:isAuth
       });
     });
