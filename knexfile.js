@@ -16,7 +16,7 @@ module.exports = {
   staging: {
     client: "pg",
     connection: {
-      connectionString: process.env.DATABASE_URL,
+      connectionString: 'postgres://yamaguchi:AOJdIvHKkUn8dex8B78No3vM7gmpuWRI@dpg-cdi869g2i3mick8lv8c0-a/shopdic',
       ssl: { rejectUnauthorized: false },
     },
   },
