@@ -16,7 +16,7 @@ module.exports = {
   staging: {
     client: "pg",
     connection: {
-      connectionString: 'postgres://yamaguchi:AOJdIvHKkUn8dex8B78No3vM7gmpuWRI@dpg-cdi869g2i3mick8lv8c0-a/shopdic',
+      connectionString: 'postgres://yamaguchi:RLf4P7qWYZPRUp7Yf31WkXWfOrY8YT62@dpg-cfj0hmla49903fgiimmg-a/shopdic_j7jn',
       ssl: { rejectUnauthorized: false },
     },
   },
